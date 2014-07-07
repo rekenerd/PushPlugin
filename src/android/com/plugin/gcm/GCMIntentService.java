@@ -115,9 +115,11 @@ public class GCMIntentService extends GCMBaseIntentService {
 			mBuilder.setContentText("<missing message content>");
 		}
 		
-		Boolean bigView = extras.getBoolean("bigview");
-		if (bigView) {
-			mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+		if (extras.getString("bigview") != null) {
+			boolean bigview = Boolean.parseBoolean(extras.getString("bigview"));
+			if (bigview) {
+				mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+			}
 		}
 
 		String msgcnt = extras.getString("msgcnt");
